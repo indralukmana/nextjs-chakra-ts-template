@@ -1,0 +1,5 @@
+!.storybook
+*.md
+
+public/scripts/*
+node_modules/*

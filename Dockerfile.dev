@@ -1,0 +1,16 @@
+FROM node:18-alpine
+
+RUN npm install -g pnpm
+
+WORKDIR /app
+
+COPY package.json pnpm-lock.yaml ./
+
+RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store pnpm install
+
+COPY src ./src
+COPY public ./public
+COPY next.config.js .
+COPY tsconfig.json .
+
+CMD ["pnpm", "dev"]
